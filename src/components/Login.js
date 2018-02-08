@@ -16,16 +16,16 @@ import {
     TouchableWithoutFeedback
 } from 'react-native';
 import * as firebase from "firebase";
-const firebaseConfig = {
-    apiKey: "AIzaSyB3w5UGpeYEzgvCCRw7neYb7P831C_1QDI",
-    authDomain: "turf-sports.firebaseapp.com",
-    databaseURL: "https://turf-sports.firebaseio.com",
-    projectId: "turf-sports",
-    storageBucket: "turf-sports.appspot.com",
-    messagingSenderId: "610689124815"
-};
+// const firebaseConfig = {
+//     apiKey: "AIzaSyB3w5UGpeYEzgvCCRw7neYb7P831C_1QDI",
+//     authDomain: "turf-sports.firebaseapp.com",
+//     databaseURL: "https://turf-sports.firebaseio.com",
+//     projectId: "turf-sports",
+//     storageBucket: "turf-sports.appspot.com",
+//     messagingSenderId: "610689124815"
+// };
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 import Button from "apsl-react-native-button";
 import DismissKeyboard from "dismissKeyboard";
 
@@ -154,6 +154,7 @@ export default class App extends Component {
                         <TextInput
                             placeholder="put password here"
                             onChangeText={(password) => this.setState({password})}
+                            secureTextEntry={true}
                         />
 
                         {/*<View style={styles.submit}>*/}
