@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * Firebase stuff:https://github.com/JamesMarino/Firebase-ReactNative/blob/master/index.ios.js
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
     AppRegistry,
@@ -16,59 +9,9 @@ import {
     TouchableWithoutFeedback
 } from 'react-native';
 import * as firebase from "firebase";
-// const firebaseConfig = {
-//     apiKey: "AIzaSyB3w5UGpeYEzgvCCRw7neYb7P831C_1QDI",
-//     authDomain: "turf-sports.firebaseapp.com",
-//     databaseURL: "https://turf-sports.firebaseio.com",
-//     projectId: "turf-sports",
-//     storageBucket: "turf-sports.appspot.com",
-//     messagingSenderId: "610689124815"
-// };
-
-// firebase.initializeApp(firebaseConfig);
 import Button from "apsl-react-native-button";
 import DismissKeyboard from "dismissKeyboard";
 
-// import CommonStyle from "/styles/common.css";
-
-
-//
-// export default class App extends Component<{}> {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text style={styles.welcome}>
-//           Welcome to React Native!
-//         </Text>
-//         <Text style={styles.instructions}>
-//           To get started, edit App.js
-//         </Text>
-//         <Text style={styles.instructions}>
-//           {instructions}
-//         </Text>
-//       </View>
-//     );
-//   }
-// }
-//
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#F5FCFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#333333',
-//     marginBottom: 5,
-//   },
-// });
 
 export default class App extends Component {
 
