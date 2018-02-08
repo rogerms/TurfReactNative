@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 //import Icon from '../../node_modules/react-native-vector-icons/EvilIcons';
 import Icon from '../../node_modules/react-native-vector-icons/Ionicons';
-import firebase from 'firebase';
+import Toolbar from './Toolbar';
 
 
 export default class AddPerson extends Component {
@@ -16,10 +16,12 @@ export default class AddPerson extends Component {
     }
   render() {
     return (
-      <View style={styles.container}>
-        <Text>My Games</Text>
-        <Button onPress={() => firebase.auth().signOut()}  title='Logout' ></Button>
-      </View>
+        <View>
+            <Toolbar title='My Games' />
+            <View style={{padding: 20}}>
+                <Text>My Games</Text>
+            </View>
+         </View>
     );
   }
 }
@@ -27,7 +29,6 @@ export default class AddPerson extends Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      flexWrap: 'wrap',
       padding: 20,
       backgroundColor: '#e5e5e5',
     },

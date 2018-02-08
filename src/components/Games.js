@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import Icon from '../../node_modules/react-native-vector-icons/Ionicons';
-
+import Toolbar from './Toolbar';
 
 
 export default class AddPerson extends Component {
@@ -18,8 +18,11 @@ export default class AddPerson extends Component {
     //ion-map
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Games</Text>
+        <View>
+            <Toolbar title='Games' />
+            <View style={{padding: 20}}>
+                <Text>Games</Text>
+            </View>
       </View>
     );
   }

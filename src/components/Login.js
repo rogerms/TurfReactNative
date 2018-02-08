@@ -79,13 +79,11 @@ export default class App extends Component {
 
         return (
             <TouchableWithoutFeedback onPress={() => {DismissKeyboard()}}>
-                <View>
-                    {/*<View style={styles.formGroup}>*/}
+                <View style={styles.container}>
+                    <View style={styles.formGroup}>
                     <View>
 
-                        {/*<Text style={styles.title}>Firebase Sample</Text>*/}
-                        <Text>Firebase Sample</Text>
-
+                        <Text style={styles.title}>Log in</Text>
                         <TextInput
                             placeholder="put email here"
                             onChangeText={(email) => this.setState({email})}
@@ -97,7 +95,7 @@ export default class App extends Component {
                         />
 
                         {/*<View style={styles.submit}>*/}
-                        <View>
+                        <View style={{paddingTop: 30}}>
 
                             {/*<Button onPress={this.signup} style={CommonStyle.buttons} textStyle={{fontSize: 18}}>*/}
                             <Button onPress={this.signup} textStyle={{fontSize: 18}}>
@@ -113,6 +111,7 @@ export default class App extends Component {
                         {/*<Text style={styles.response}>{this.state.response}</Text>*/}
                         <Text>{this.state.response}</Text>
                     </View>
+                    </View>
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -120,9 +119,15 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
-
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f0f0f0',
+    },
     formGroup: {
-        padding: 50
+       
+        width: 300,
     },
 
     title: {
