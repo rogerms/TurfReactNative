@@ -40,12 +40,6 @@ export default class App extends Component {
                 response: "account created"
             });
 
-            setTimeout(() => {
-                this.props.navigator.push({
-                    name: "Home"
-                })
-            }, 1500);
-
         } catch (error) {
             this.setState({
                 response: error.toString()
@@ -58,25 +52,27 @@ export default class App extends Component {
 
         DismissKeyboard();
 
-        try {
-            await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
+        // try {
+        //     await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
 
-            this.setState({
-                response: "Logged In!"
-            });
+        //     this.setState({
+        //         response: "Logged In!"
+        //     });
 
-            setTimeout(() => {
-                this.props.navigator.push({
-                    name: "Home"
-                })
-            }, 1500);
+        // } catch (error) {
+        //     this.setState({
+        //         response: error.toString()
+        //     })
+        // }
 
-        } catch (error) {
-            this.setState({
-                response: error.toString()
-            })
-        }
-
+        // code above was givin warning: state called on unmounted component
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then(() => {
+            this.setState({response: 'Logged In!'});
+        })
+        .catch((error) => {
+            this.setState({response: error.toString()})
+        });
     }
 
     render() {
