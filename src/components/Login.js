@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createElement } from 'react';
 import {
     AppRegistry,
     TextInput,
@@ -11,7 +11,14 @@ import {
 import * as firebase from "firebase";
 import Button from "apsl-react-native-button";
 import DismissKeyboard from "dismissKeyboard";
+import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
+/**********************************************************************************
+// Google SignIn Doc
+// https://github.com/devfd/react-native-google-signin
+// video for IOS
+// https://www.youtube.com/watch?v=dFnnXlJq7tg&t=644s
+**********************************************************************************/
 
 export default class App extends Component {
 
@@ -21,13 +28,41 @@ export default class App extends Component {
         this.state = {
             email: "",
             password: "",
-            response: ""
+            response: "",
+            user: null,
         };
 
         this.signup = this.signup.bind(this);
         this.login = this.login.bind(this);
+        this.signInWithGoogle = this.signInWithGoogle.bind(this);
     }
 
+    componentDidMount(){
+        GoogleSignin.configure({
+            iosClientId: '<FROM DEVELOPER CONSOLE>', // only for iOS
+          })
+          .then(() => {
+            // you can now call currentUserAsync()
+          });
+    }
+
+    signInWithGoogle()
+    {
+        GoogleSignin.signIn()
+        .then((data) => {
+            //create a new credential with this token
+            const credential = firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken);
+            //login with credential
+            return firebase.auth().signInWithCredential(credential);
+        })
+        .then((user) =>{
+            this.setState({user});
+            console.log(`Logged in user: ${user.displayName}`);
+        })
+        .catch((err) =>{
+            console.log(`Login failed with error ${err}`);
+        })
+    }
 
     async signup() {
 
@@ -105,6 +140,12 @@ export default class App extends Component {
                             <Button onPress={this.login} textStyle={{fontSize: 18}}>
                                 Login
                             </Button>
+                            <GoogleSigninButton
+                                style={{width: 312, height: 48}}
+                                size={GoogleSigninButton.Size.Wide}
+                                color={GoogleSigninButton.Color.Dark}
+                                onPress={this.signInWithGoogle}
+                            />
                         </View>
                     </View>
                     <View>
