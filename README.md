@@ -32,6 +32,15 @@ npm install
 react-native run-ios      //optionally add: --simulator="iPhone 4s"
 ```
 - Android:
+  
+  Go to the android/ directory
+  
+  Create a file called local.properties with this line:
+  
+  sdk.dir = /Users/USERNAME/Library/Android/sdk
+  
+  Where USERNAME is your OSX username
+
 ```
 react-native run-android    //I can't get it to work yet
 ```
