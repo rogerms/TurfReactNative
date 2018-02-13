@@ -7,17 +7,17 @@ import Toolbar from './Toolbar';
 
 export default class AddPerson extends Component {
     static navigationOptions = {
+            title: 'My Games',
             tabBarLabel: 'My Games',
             tabBarIcon: ({ tintColor }) => (<Icon
-                name={'ios-contacts'}
+                name={'md-bookmarks'}
                 size={28} 
                 style={[{ color: tintColor }, styles.icon]} 
             />)
     }
   render() {
     return (
-        <View>
-            <Toolbar title='My Games' />
+        <View style={styles.screen}>
             <View style={{padding: 20}}>
                 <Text>My Games</Text>
             </View>
@@ -32,11 +32,10 @@ const styles = StyleSheet.create({
       padding: 20,
       backgroundColor: '#e5e5e5',
     },
-    welcome: {
-      fontSize: 20,
-      textAlign: 'center',
-      textAlignVertical: 'center',
-      margin: 10,
+    screen: {
+      backgroundColor: '#ffffff',
+      flex:1,
+      alignSelf:'stretch',
     },
     icon: {
         paddingBottom: 2,

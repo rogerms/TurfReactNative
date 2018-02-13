@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import Login from './Login';
-import Navigation from './Navigation'
+import RootNavigation from './Navigation'
 import Loader from './Loader';
-
+import { GoogleSignin } from 'react-native-google-signin';
 
 export default class App extends Component {
 
@@ -29,11 +29,19 @@ export default class App extends Component {
               this.setState({loggedIn: false});
             }
           });
+
+        //Google initializer
+        GoogleSignin.configure({
+            iosClientId: '<FROM DEVELOPER CONSOLE>', // only for iOS
+          })
+          .then(() => {
+            // you can now call currentUserAsync()
+          });
     }
 
     renderInitialView(){
         if(this.state.loggedIn === true){
-            return <Navigation />;
+            return <RootNavigation />;
         }
         if(this.state.loggedIn === false){
             return <Login />;

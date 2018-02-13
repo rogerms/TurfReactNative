@@ -40,15 +40,6 @@ export default class App extends Component {
         
     }
 
-    componentDidMount(){
-        GoogleSignin.configure({
-            iosClientId: '<FROM DEVELOPER CONSOLE>', // only for iOS
-          })
-          .then(() => {
-            // you can now call currentUserAsync()
-          });
-    }
-
     signInWithGoogle()
     {
         GoogleSignin.signIn()

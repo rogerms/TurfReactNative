@@ -10,6 +10,7 @@ import Profile from './Profile';
 //
 //**************************************************************** */
 
+
 const Navigation = TabNavigator({
     Games: {screen: Games},
     MyGames: {screen: MyGames},
@@ -36,5 +37,20 @@ const Navigation = TabNavigator({
     tabBarPosition: 'bottom',
 });
 
+const RootNavigation = StackNavigator({
+    Navigation: {screen: Navigation},
 
-export default Navigation;
+},
+{
+    headerMode: 'float', 
+    navigationOptions:{
+        headerTintColor: 'rgba(255, 255, 255, .85)',
+        headerStyle: {
+            backgroundColor: '#26a69a',
+            borderBottomColor: '#ffffff', 
+        },
+    }
+}
+);
+
+export default RootNavigation;

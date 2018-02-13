@@ -4,23 +4,23 @@ import Icon from '../../node_modules/react-native-vector-icons/Ionicons';
 import Toolbar from './Toolbar';
 
 
-export default class AddPerson extends Component {
+export default class Games extends Component {
     static navigationOptions = {
+            title: 'Games',
             tabBarLabel: 'Games',
             tabBarIcon: ({ tintColor }) => (<Icon
                 name={'ios-basketball'}
                 size={28} 
                 style={[{ color: tintColor }, styles.icon]} 
             />)
-
     }
     //ion-ios-basketball
     //ion-map
+
   render() {
     return (
-        <View>
-            <Toolbar title='Games' />
-            <View style={{padding: 20}}>
+        <View style={styles.screen}>
+            <View style={[{padding: 20}, styles.container ]}>
                 <Text>Games</Text>
             </View>
       </View>
@@ -33,13 +33,12 @@ const styles = StyleSheet.create({
       flex: 1,
       flexWrap: 'wrap',
       padding: 20,
-      backgroundColor: '#e5e5e5',
+      backgroundColor: 'white',
     },
-    welcome: {
-      fontSize: 20,
-      textAlign: 'center',
-      textAlignVertical: 'center',
-      margin: 10,
+    screen: {
+      backgroundColor: '#ffffff',
+      flex:1,
+      alignSelf:'stretch',
     },
     icon: {
         paddingBottom: 2,
