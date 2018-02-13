@@ -6,13 +6,13 @@ import {
     View,
     StyleSheet,
     dismissKeyboard,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
 } from 'react-native';
 import * as firebase from "firebase";
 import Button from "apsl-react-native-button";
 import DismissKeyboard from "dismissKeyboard";
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
-
+import {AccessToken, LoginButton, LoginManager } from 'react-native-fbsdk';
 /**********************************************************************************
 // Google SignIn Doc
 // https://github.com/devfd/react-native-google-signin
@@ -20,8 +20,8 @@ import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 // https://www.youtube.com/watch?v=dFnnXlJq7tg&t=644s
 **********************************************************************************/
 
-export default class App extends Component {
 
+export default class App extends Component {
     constructor(props) {
         super(props);
 
@@ -35,6 +35,9 @@ export default class App extends Component {
         this.signup = this.signup.bind(this);
         this.login = this.login.bind(this);
         this.signInWithGoogle = this.signInWithGoogle.bind(this);
+        this.signInWithFacebook = this.signInWithFacebook.bind(this);
+        this.getFacebookUserInfo = this.getFacebookUserInfo.bind(this);
+        
     }
 
     componentDidMount(){
@@ -60,9 +63,63 @@ export default class App extends Component {
             console.log(`Logged in user: ${user.displayName}`);
         })
         .catch((err) =>{
-            console.log(`Login failed with error ${err}`);
+            console.log(`Firebase (google) Login failed ${err}`);
         })
     }
+
+    signInWithFacebook()
+    { 
+        LoginManager.logInWithReadPermissions(['public_profile', 'email'])
+        .then((result) => {
+            if(result.isCancelled){
+                return Promise.reject(new Error("FB request canceled"));
+            }
+            console.log(`Facebook login success, permission: ${result.grantedPermissions}`);
+
+            return AccessToken.getCurrentAccessToken();
+        })
+        .then((data) => {
+            console.log("facebook call user");
+            this.getFacebookUserInfo();
+            const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+            return firebase.auth().signInWithCredential(credential);
+        })
+        .then((user) => {
+            console.log(`Logged in user: ${user.displayName}`);
+        })
+        .catch((error) => {
+            console.log(`Firebase (facebook) login failed: ${error}`);
+        })
+    }
+
+    getFacebookUserInfo()
+    {
+        AccessToken.getCurrentAccessToken()
+        .then((data) => {
+            this.initUser(data.accessToken);
+        })
+        .catch((error) =>{
+            console.log(`Error trying to get fb user info ${error}`);
+        })
+    }
+
+    //*** fields = https://developers.facebook.com/docs/graph-api/reference/user/
+    initUser(token) {
+        const user = {};
+        fetch('https://graph.facebook.com/v2.5/me?fields=birthday,email,gender&redirect=false&access_token=' + token)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+          user.name = data.name;
+          user.id = data.id;
+          user.user_friends = data.friends;
+          user.email = data.email;
+          console.log(user);
+        })
+        .catch(() => {
+          reject('ERROR GETTING DATA FROM FACEBOOK')
+        })
+      }
 
     async signup() {
 
@@ -129,7 +186,7 @@ export default class App extends Component {
                             secureTextEntry={true}
                         />
 
-                        {/*<View style={styles.submit}>*/}
+                        {/*Google button*/}
                         <View style={{paddingTop: 30}}>
 
                             {/*<Button onPress={this.signup} style={CommonStyle.buttons} textStyle={{fontSize: 18}}>*/}
@@ -137,7 +194,7 @@ export default class App extends Component {
                                 Sign up
                             </Button>
                             {/*<Button onPress={this.login} style={styles.buttons} textStyle={{fontSize: 18}}>*/}
-                            <Button onPress={this.login} textStyle={{fontSize: 18}}>
+                            <Button onPress={this.login} textStyle={{fontSize: 18}} color='#3b5998'>
                                 Login
                             </Button>
                             <GoogleSigninButton
@@ -146,6 +203,13 @@ export default class App extends Component {
                                 color={GoogleSigninButton.Color.Dark}
                                 onPress={this.signInWithGoogle}
                             />
+                        </View>
+                        {/* Facebook button */}
+                        <View style={{paddingTop: 10, paddingLeft:5}}>
+                            <Button style={{backgroundColor: '#4267B2', borderColor:'#4267B2', borderRadius:0}} textStyle={{fontSize: 18, color:'white'}}
+                                    onPress={this.signInWithFacebook}>
+                                Continue with Facebook
+                            </Button>
                         </View>
                     </View>
                     <View>
