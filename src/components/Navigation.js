@@ -1,6 +1,7 @@
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import Games from './Games';
 import MyGames from './MyGames';
+import Profile from './Profile';
 
 
 //****** TabNavigation docs/ API **********************************
@@ -12,6 +13,7 @@ import MyGames from './MyGames';
 const Navigation = TabNavigator({
     Games: {screen: Games},
     MyGames: {screen: MyGames},
+    Profile: {screen: Profile},
 },
 {
     tabBarOptions:{

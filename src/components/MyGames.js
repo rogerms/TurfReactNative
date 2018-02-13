@@ -9,7 +9,7 @@ export default class AddPerson extends Component {
     static navigationOptions = {
             tabBarLabel: 'My Games',
             tabBarIcon: ({ tintColor }) => (<Icon
-                name={'ios-person'}
+                name={'ios-contacts'}
                 size={28} 
                 style={[{ color: tintColor }, styles.icon]} 
             />)
