@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import Icon from '../../node_modules/react-native-vector-icons/Ionicons';
-import Toolbar from './Toolbar';
+import MaterialIcon from '../../node_modules/react-native-vector-icons/MaterialIcons';
+import Button from "apsl-react-native-button";
 
 
 export default class Games extends Component {
@@ -20,9 +21,16 @@ export default class Games extends Component {
   render() {
     return (
         <View style={styles.screen}>
-            <View style={[{padding: 20}, styles.container ]}>
+            <View style={[styles.container ]}>
                 <Text>Games</Text>
             </View>
+            <Button onPress={() => console.log('fab pressed')} style={styles.fab} >
+              <Icon
+                  name={'md-map'} 
+                  size={42}
+                  style={{color: 'white'}} 
+                  />
+            </Button>
       </View>
     );
   }
@@ -43,4 +51,14 @@ const styles = StyleSheet.create({
     icon: {
         paddingBottom: 2,
     },
+    fab:{
+      width: 60,  
+      height: 60,   
+      borderRadius: 30,            
+      backgroundColor: '#ee6e73',
+      borderColor: '#ee6e73',                               
+      position: 'absolute',                                          
+      bottom: 10,                                                    
+      right: 10, 
+    }
   });
