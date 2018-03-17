@@ -22,12 +22,11 @@ export default class Games extends Component {
     }
 
     goToScreen(){
-      console.log('goToScreen');
       this.props.navigation.dispatch({
-        key: 'GamesMap',
         type: 'ReplaceCurrentScreen',
-        routeName: 'GamesMap',
-        params: {location: 'localtion'},
+        routeName: 'Games',
+        params: {user: 'currentUser'},
+        key: 'Games'
       });
     }
     //ion-ios-basketball
@@ -37,11 +36,11 @@ export default class Games extends Component {
     return (
         <View style={styles.screen}>
             <View style={[styles.container ]}>
-                <Text>Games</Text>
+                <Text>Games Map</Text>
             </View>
-            <Button onPress={ this.goToScreen  } style={styles.fab} >
+            <Button onPress={ this.goToScreen } style={styles.fab} >
               <Icon
-                  name={'md-map'} 
+                  name={'md-list'} 
                   size={42}
                   style={{color: 'white'}} 
                   />
@@ -70,8 +69,8 @@ const styles = StyleSheet.create({
       width: 60,  
       height: 60,   
       borderRadius: 30,            
-      backgroundColor: '#ee6e73',
-      borderColor: '#ee6e73',                               
+      backgroundColor: '#8577EE',
+      borderColor: '#8577EE',                               
       position: 'absolute',                                          
       bottom: 10,                                                    
       right: 10, 

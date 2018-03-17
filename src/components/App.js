@@ -19,17 +19,20 @@ export default class App extends Component {
             messagingSenderId: "610689124815"
         };
 
-        firebase.initializeApp(config);
+        //make sure we just do it once
+        if (!firebase.apps.length)
+        {
+            firebase.initializeApp(config);
+        }
 
         firebase.auth().onAuthStateChanged((user) => {
             if(user){
-              this.setState({loggedIn: true});
+                this.setState({loggedIn: true});
             }
             else{
-              this.setState({loggedIn: false});
+                this.setState({loggedIn: false});
             }
-          });
-
+        });
         //Google initializer
         GoogleSignin.configure({
             iosClientId: '<FROM DEVELOPER CONSOLE>', // only for iOS

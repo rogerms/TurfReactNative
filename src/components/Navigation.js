@@ -2,6 +2,7 @@ import { StackNavigator, TabNavigator } from 'react-navigation';
 import Games from './Games';
 import MyGames from './MyGames';
 import Profile from './Profile';
+import GamesMap from './GamesMap';
 
 
 //****** TabNavigation docs/ API **********************************
@@ -10,9 +11,18 @@ import Profile from './Profile';
 //
 //**************************************************************** */
 
+export const GamesStack = StackNavigator({
+    Games: {screen: Games},
+    GamesMap: {screen: GamesMap},
+},
+{
+    headerMode: 'none',
+}
+);
+
 
 const Navigation = TabNavigator({
-    Games: {screen: Games},
+    GamesStack: {screen: GamesStack},
     MyGames: {screen: MyGames},
     Profile: {screen: Profile},
 },
@@ -52,5 +62,21 @@ const RootNavigation = StackNavigator({
     }
 }
 );
+
+const prevGetStateForActionHomeStack = GamesStack.router.getStateForAction;
+
+GamesStack.router.getStateForAction = (action, state) => {
+    if (state && action.type === 'ReplaceCurrentScreen') {
+      const routes = state.routes.slice(0, state.routes.length - 1);
+      routes.push(action);
+      return {
+        ...state,
+        routes,
+        index: routes.length - 1,
+      };
+    }
+    return prevGetStateForActionHomeStack(action, state);
+}
+
 
 export default RootNavigation;
