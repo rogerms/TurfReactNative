@@ -143,12 +143,20 @@ dependencies {
     compile(project(":react-native-google-signin")){         
         exclude group: "com.google.android.gms" // very important google signin
     }
-    compile 'com.google.android.gms:play-services-auth:9.2.1' // should be at least 9.0.0 goolge signin
+    compile 'com.google.android.gms:play-services-auth:9.8.0' // should be at least 9.0.0 goolge signin
     compile(project(':react-native-fbsdk')) {
         exclude(group: 'com.facebook.android', module: 'facebook-android-sdk')
     }
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
-}
+
+    compile(project(':react-native-maps')){
+        exclude group: 'com.google.android.gms', module: 'play-services-base'
+        exclude group: 'com.google.android.gms', module: 'play-services-maps'
+    }
+    compile 'com.google.android.gms:play-services-base:9.8.0'
+    compile 'com.google.android.gms:play-services-maps:9.8.0'
+
+} //9.2.1
 
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use

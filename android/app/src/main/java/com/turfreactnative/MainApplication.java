@@ -13,6 +13,7 @@ import com.facebook.FacebookSdk;
 import com.facebook.CallbackManager;
 import com.facebook.appevents.AppEventsLogger;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;  // <--- import
+import com.airbnb.android.react.maps.MapsPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +37,8 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
               new MainReactPackage(),
               new FBSDKPackage(mCallbackManager),
-		  new RNGoogleSigninPackage() // <-- add this googlesignin
+              new MapsPackage(),
+		          new RNGoogleSigninPackage() // <-- add this googlesignin
       );
     }
 
