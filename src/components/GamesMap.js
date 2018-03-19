@@ -47,7 +47,9 @@ export default class Games extends Component {
             {title: 'Center St.', latlng: {latitude:40.23389833333333, longitude:-111.65799999999999 }},
             {title: 'Provo Library', latlng: {latitude:40.242281, longitude:-111.657500 }},
             {title: 'Smiths', latlng: {latitude:40.239448, longitude:-111.661362 }},
-          ]
+          ],
+
+          error: null,
         };
 
         this.goToScreen = this.goToScreen.bind(this);
@@ -130,8 +132,8 @@ export default class Games extends Component {
                       longitudeDelta: 0.0121,
                     }}
                   >
-                {this.state.markers.map(marker => (
-                    <Marker
+                {this.state.markers.map((marker, i) => (
+                    <Marker key={i}
                       coordinate={marker.latlng}
                       title={marker.title}
                     />
