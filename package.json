@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "postinstall": "replace play-services-auth:\\+ play-services-auth:11.8.0 node_modules/react-native-google-signin/android/build.gradle -s",
     "test": "jest"
   },
   "dependencies": {
@@ -23,7 +24,8 @@
     "babel-jest": "22.1.0",
     "babel-preset-react-native": "4.0.0",
     "jest": "22.1.2",
-    "react-test-renderer": "16.2.0"
+    "react-test-renderer": "16.2.0",
+    "replace": "^0.3.0"
   },
   "jest": {
     "preset": "react-native"
