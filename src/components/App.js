@@ -35,7 +35,7 @@ export default class App extends Component {
         });
         //Google initializer
         GoogleSignin.configure({
-            iosClientId: '<FROM DEVELOPER CONSOLE>', // only for iOS
+            iosClientId: '610689124815-3a0qin62fcmlbmkt60i5hk8b4uhvk3sa.apps.googleusercontent.com', // only for iOS
           })
           .then(() => {
             // you can now call currentUserAsync()

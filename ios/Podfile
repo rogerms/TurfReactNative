@@ -1,0 +1,26 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'TurfReactNative' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for TurfReactNative
+
+  pod 'GoogleSignIn'
+  pod 'Bolts'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKShareKit'
+  pod 'FBSDKLoginKit'
+  pod 'GoogleAppUtilities'
+  pod 'GoogleAuthUtilities'
+  pod 'GoogleNetworkingUtilities'
+  pod 'GoogleSymbolUtilities'
+  pod 'GoogleUtilities'
+
+  # target 'TurfReactNativeTests' do
+  #   inherit! :search_paths
+  #   # Pods for testing
+  # end
+
+end
